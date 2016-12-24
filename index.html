@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Tigerspike</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="build/css/normalize.css" />
+    <link rel="stylesheet" href="build/css/style.css" />
+</head>
+<body>
+<div class="main" ng-app="mainApp">
+    <div class="nav">
+        <div class="logo"></div>
+        <nav>
+            <ul class="menu" ng-controller="menuCtrl">
+                <li><a href="#">Buy</a></li>
+                <li><a href="#">Sell</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Blog</a></li>
+                <li class="right"><a ng-href="#/register" ng-class="{active: isActive('/register')}">Sign-up</a></li>
+                <li class="right"><a ng-href="#/login" ng-class="{active: isActive('/login')}">Login</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="breadcrumbs">[breadcrumbs]</div>
+    <div class="content">
+        <div ng-view></div>
+    </div>
+</div>
+
+    <script type="text/javascript" src="build/js/angular.js"></script>
+    <script type="text/javascript" src="build/js/main.js"></script>
+
+</body>
+</html>

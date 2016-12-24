@@ -1,0 +1,206 @@
+﻿/* 
+  Allow angular.js to be loaded in body, hiding cloaked elements until 
+  templates compile.  The !important is important given that there may be 
+  other selectors that are more specific or come later and might alter display.  
+ */
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none !important;
+}
+/***************************************/
+
+$font-stack: Arial,sans-serif;
+$font-color: #000;
+$background-color: #EDEDED;
+$main-background-color: #FFFFFF;
+$footer-color: #5E5E5E;
+$logo-box-color: #9E9D9D;
+$menu-color: #EBEBEB;
+$menu-focus-color: #BFBDBD;
+$menu-active-color: #737272;
+$breadcrumbs: #F5F5F5;
+$section-color: #FAFAFA;
+$inner-section-color: #F2F2F2;
+$light-button-color: #E6E6E6;
+$dark-button-color: #474747;
+$dark-button-font: #fff;
+$error-color: #D71921;
+$error-background: #F9E6E6;
+
+
+
+@import 'mixins.scss';
+@import 'grid.scss';
+@import 'textbox.scss';
+@import 'buttons.scss';
+
+* {
+    @include box-sizing();
+}
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    font: 100%/1.5 $font-stack;
+    background: $background-color;
+    color: $font-color;
+    margin: 0;
+}
+
+.main {
+    background: $main-background-color;
+    width: 75%;
+    min-height: 100%;
+    margin: auto;
+}
+
+.nav {
+    height: 3.25em;
+    overflow: hidden;
+
+    .logo {
+        width: 4.25em;
+        height: 100%;
+        float: left;
+        background: $logo-box-color;
+    }
+
+    .menu {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        overflow: hidden;
+        background: $menu-color;
+
+        li {
+            float: left;
+
+            &.right {
+                float: right;
+            }
+
+            a {
+                display: block;
+                min-width: 7em;
+                font-size: 0.95em;
+                padding: 1em;
+                font-weight: 600;
+                text-align: center;
+                text-decoration: none;
+                color: $font-color;
+
+                &:hover {
+                    background: $menu-focus-color;
+                }
+
+                &.active {
+                    background: $menu-active-color;
+                }
+            }
+        }
+    }
+}
+
+.breadcrumbs {
+    height: 3em;
+    font-size: 0.85em;
+    overflow: hidden;
+    padding: 0.85em 1.5em;
+    background: $breadcrumbs;
+}
+
+.content {
+    padding: 1em;
+
+
+    .page-header {
+        margin: 1.5em 1em 1em;
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        h2 {
+            font-weight: normal;
+            font-size: 1.25em;
+            margin: 0;
+        }
+    }
+
+
+    .section {
+        background: $section-color;
+
+        .inner-section {
+            background: $inner-section-color;
+            margin: 1em;
+            padding: 1.5em;
+
+            .label {
+                font-size: 0.85em;
+                font-weight: 600;
+                margin-bottom: 0.15em;
+
+                &.error {
+                    color: $error-color;
+                }
+            }
+
+            .input {
+                margin-bottom: 1em;
+
+                &.last {
+                    margin-bottom: 0.15em;
+                }
+            }
+
+            .popup-link {
+                font-size: 0.75em;
+                text-decoration: underline;
+                cursor: pointer;
+                margin-top: 0.15em;
+            }
+        }
+    }
+}
+
+.error-message {
+    color: $error-color;
+    font-size: 0.75em;
+    font-weight: 600;
+}
+
+.messagebox {
+    padding: 1em;
+    font-size: 0.95em;
+    margin: 0.75em 0;
+    @include border-radius(4px);
+
+    &.error {
+        border: 1px solid $error-color;
+        background: $error-background;
+        color: $error-color;
+
+        .notification {
+            font-weight: 600;
+        }
+
+        .errorinfo {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+
+    .close-button {
+        float: right;
+        text-decoration: underline;
+        cursor: pointer;
+        color: $dark-button-color;
+        font-weight: 600;
+    }
+}

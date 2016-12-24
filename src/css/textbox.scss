@@ -1,0 +1,62 @@
+﻿/*Style for textboxes*/
+$button-color: #BFBDBD;
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.5em 0.75em;
+    border: 1px solid $button-color;
+    @include border-radius(4px);
+}
+
+input::-webkit-input-placeholder {
+    color: $button-color;
+    font-style: italic;
+}
+
+input:-moz-placeholder {
+    color: $button-color;
+    font-style: italic;
+}
+
+input::-moz-placeholder {
+    color: $button-color;
+    font-style: italic;
+}
+
+input:-ms-input-placeholder {
+    color: $button-color;
+    font-style: italic;
+}
+
+input[type="text"].error,
+input[type="password"].error {
+    background: $error-background;
+    border-color: $error-color;
+}
+
+/*.error {*/
+
+    input.error::-webkit-input-placeholder {
+        color: $error-color;
+        font-style: italic;
+    }
+
+    input.error:-moz-placeholder {
+        color: $error-color;
+        font-style: italic;
+    }
+
+    input.error::-moz-placeholder {
+        color: $error-color;
+        font-style: italic;
+    }
+
+    input.error:-ms-input-placeholder {
+        color: $error-color;
+        font-style: italic;
+    }
+/*}*/
+
+
+/********************/

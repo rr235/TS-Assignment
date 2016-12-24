@@ -1,0 +1,252 @@
+/* 
+  Allow angular.js to be loaded in body, hiding cloaked elements until 
+  templates compile.  The !important is important given that there may be 
+  other selectors that are more specific or come later and might alter display.  
+ */
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important; }
+
+/***************************************/
+.row::after {
+  content: "";
+  clear: both;
+  display: table; }
+
+[class*="col-"] {
+  float: left;
+  /*padding: 15px;*/ }
+
+.col-1 {
+  width: 8.33%; }
+
+.col-2 {
+  width: 16.66%; }
+
+.col-3 {
+  width: 25%; }
+
+.col-4 {
+  width: 33.33%; }
+
+.col-5 {
+  width: 41.66%; }
+
+.col-6 {
+  width: 50%; }
+
+.col-7 {
+  width: 58.33%; }
+
+.col-8 {
+  width: 66.66%; }
+
+.col-9 {
+  width: 75%; }
+
+.col-10 {
+  width: 83.33%; }
+
+.col-11 {
+  width: 91.66%; }
+
+.col-12 {
+  width: 100%; }
+
+/*Style for textboxes*/
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 0.5em 0.75em;
+  border: 1px solid #BFBDBD;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; }
+
+input::-webkit-input-placeholder {
+  color: #BFBDBD;
+  font-style: italic; }
+
+input:-moz-placeholder {
+  color: #BFBDBD;
+  font-style: italic; }
+
+input::-moz-placeholder {
+  color: #BFBDBD;
+  font-style: italic; }
+
+input:-ms-input-placeholder {
+  color: #BFBDBD;
+  font-style: italic; }
+
+input[type="text"].error,
+input[type="password"].error {
+  background: #F9E6E6;
+  border-color: #D71921; }
+
+/*.error {*/
+input.error::-webkit-input-placeholder {
+  color: #D71921;
+  font-style: italic; }
+
+input.error:-moz-placeholder {
+  color: #D71921;
+  font-style: italic; }
+
+input.error::-moz-placeholder {
+  color: #D71921;
+  font-style: italic; }
+
+input.error:-ms-input-placeholder {
+  color: #D71921;
+  font-style: italic; }
+
+/*}*/
+/********************/
+/*Style for buttons*/
+input[type="button"],
+input[type="submit"] {
+  min-width: 150px;
+  padding: 0.75em;
+  background: 1px solid #E6E6E6;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  border: none;
+  text-align: center; }
+
+.dark-button {
+  background: #474747;
+  color: #fff; }
+
+.right {
+  float: right; }
+
+.button::after {
+  content: ' ';
+  clear: both;
+  display: table; }
+
+/********************/
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%; }
+
+body {
+  font: 100%/1.5 Arial, sans-serif;
+  background: #EDEDED;
+  color: #000;
+  margin: 0; }
+
+.main {
+  background: #FFFFFF;
+  width: 75%;
+  min-height: 100%;
+  margin: auto; }
+
+.nav {
+  height: 3.25em;
+  overflow: hidden; }
+  .nav .logo {
+    width: 4.25em;
+    height: 100%;
+    float: left;
+    background: #9E9D9D; }
+  .nav .menu {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    overflow: hidden;
+    background: #EBEBEB; }
+    .nav .menu li {
+      float: left; }
+      .nav .menu li.right {
+        float: right; }
+      .nav .menu li a {
+        display: block;
+        min-width: 7em;
+        font-size: 0.95em;
+        padding: 1em;
+        font-weight: 600;
+        text-align: center;
+        text-decoration: none;
+        color: #000; }
+        .nav .menu li a:hover {
+          background: #BFBDBD; }
+        .nav .menu li a.active {
+          background: #737272; }
+
+.breadcrumbs {
+  height: 3em;
+  font-size: 0.85em;
+  overflow: hidden;
+  padding: 0.85em 1.5em;
+  background: #F5F5F5; }
+
+.content {
+  padding: 1em; }
+  .content .page-header {
+    margin: 1.5em 1em 1em; }
+    .content .page-header h1 {
+      font-size: 2.5em;
+      margin: 0; }
+    .content .page-header h2 {
+      font-weight: normal;
+      font-size: 1.25em;
+      margin: 0; }
+  .content .section {
+    background: #FAFAFA; }
+    .content .section .inner-section {
+      background: #F2F2F2;
+      margin: 1em;
+      padding: 1.5em; }
+      .content .section .inner-section .label {
+        font-size: 0.85em;
+        font-weight: 600;
+        margin-bottom: 0.15em; }
+        .content .section .inner-section .label.error {
+          color: #D71921; }
+      .content .section .inner-section .input {
+        margin-bottom: 1em; }
+        .content .section .inner-section .input.last {
+          margin-bottom: 0.15em; }
+      .content .section .inner-section .popup-link {
+        font-size: 0.75em;
+        text-decoration: underline;
+        cursor: pointer;
+        margin-top: 0.15em; }
+
+.error-message {
+  color: #D71921;
+  font-size: 0.75em;
+  font-weight: 600; }
+
+.messagebox {
+  padding: 1em;
+  font-size: 0.95em;
+  margin: 0.75em 0;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; }
+  .messagebox.error {
+    border: 1px solid #D71921;
+    background: #F9E6E6;
+    color: #D71921; }
+    .messagebox.error .notification {
+      font-weight: 600; }
+    .messagebox.error .errorinfo {
+      text-decoration: underline;
+      cursor: pointer; }
+  .messagebox .close-button {
+    float: right;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #474747;
+    font-weight: 600; }
+
+/*# sourceMappingURL=style.css.map */

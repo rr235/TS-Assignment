@@ -1,0 +1,26 @@
+﻿/*Style for buttons*/
+input[type="button"],
+input[type="submit"] {
+    min-width: 150px;
+    padding: 0.75em;
+    background: 1px solid $light-button-color;
+    @include border-radius(4px);
+    border: none;
+    text-align: center;
+}
+
+.dark-button {
+    background: $dark-button-color;
+    color: $dark-button-font;
+}
+
+.right {
+    float: right;
+}
+
+.button::after {
+    content: ' ';
+    clear: both;
+    display: table;
+}
+/********************/
