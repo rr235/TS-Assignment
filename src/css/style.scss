@@ -157,6 +157,27 @@ body {
                 &.last {
                     margin-bottom: 0.15em;
                 }
+
+                .input-info {
+                    font-size: 0.75em;
+                }
+
+                .joint-left {
+                    @include border-radius(4px 0 0 4px);
+                }
+
+                .joint-right {
+                    @include border-radius(0 4px 4px 0);
+                }
+
+                .extra {
+                    border: 1px solid $button-color;
+                    background: #fff;
+                    .input {
+                        margin: 0.325em auto;
+                        width: 4em;
+                    }
+                }
             }
 
             .popup-link {

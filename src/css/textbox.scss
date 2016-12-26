@@ -2,7 +2,10 @@
 $button-color: #BFBDBD;
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="date"],
+input[type="email"],
+select{
     width: 100%;
     padding: 0.5em 0.75em;
     border: 1px solid $button-color;
@@ -30,7 +33,10 @@ input:-ms-input-placeholder {
 }
 
 input[type="text"].error,
-input[type="password"].error {
+input[type="password"].error,
+input[type="date"].error,
+input[type="email"].error,
+select.error {
     background: $error-background;
     border-color: $error-color;
 }

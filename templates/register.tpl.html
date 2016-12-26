@@ -1,61 +1,105 @@
-﻿<h1>Register</h1>
-<h2>Create an account and get started today.</h2>
+﻿<div class="page-header">
+    <h1>Register</h1>
+    <h2>Create an account and get started today.</h2>
+</div>
+<div id="message-box" class="messagebox" ng-show="message.info"
+     ng-class="{true: 'success',false: 'error'}[message.success]">
+    <div class="message-content">
+        <span class="notification">{{message.notification}}</span>
+        <span>{{message.info}}</span>
+        <span class="errorinfo" ng-click="GoTo(message.errorElement)">{{message.errorInfo}}</span>
+        <span class="close-button" ng-click="CloseMessage()">close</span>
+    </div>
+</div>
 <div class="section">
     <div class="row">
         <div class="col-8">
             <div class="inner-section">
                 <form>
-                    <div class="label">Forename*</div>
+                    <div class="label"  ng-class="{'error': user.forenameInvalid}">Forename*</div>
                     <div class="input">
-                        <input type="text" class="textbox" placeholder="Forename" />
+                        <input id="forename" type="text" class="textbox" placeholder="Forename" ng-model="user.forename"
+                               maxlength="100" ng-class="{'error': user.forenameInvalid}"/>
+                        <div class="error-message" ng-show="user.forenameInvalid">
+                            Please enter this informarion
+                        </div>
                     </div>
-                    <div class="label">Surname*</div>
+
+                    <div class="label" ng-class="{'error': user.surnameInvalid}">Surname*</div>
                     <div class="input">
-                        <input type="text" class="textbox" placeholder="Surname" />
+                        <input id="surname" type="text" class="textbox" placeholder="Surname" ng-model="user.surname"
+                               maxlength="100" ng-class="{'error': user.surnameInvalid}"/>
+                        <div class="error-message" ng-show="user.surnameInvalid">
+                            Please enter this informarion
+                        </div>
                     </div>
+
                     <div class="row">
-                        <div class="col-4">
-                            <div class="label">Sex*</div>
+                        <div class="col-4 pad-right">
+                            <div class="label" ng-class="{'error': user.sexInvalid}">Sex*</div>
                             <div class="input">
-                                <select>
+                                <select id="sex" ng-model="user.sex" ng-class="{'error': user.sexInvalid}">
                                     <option>Please Select</option>
                                     <option>Male</option>
                                     <option>Female</option>
                                 </select>
+                                <div class="error-message" ng-show="user.sexInvalid">
+                                    Please select valid option
+                                </div>
                             </div>
                         </div>
                         <div class="col-8">
-                            <div class="label">Date of birth</div>
+                            <div class="label" ng-class="{'error': user.dobInvalid}">Date of birth</div>
                             <div class="input">
-                                <input type="date" class="textbox" placeholder="Select dates" />
+                                <input id="dob" type="date" class="textbox" placeholder="Select dates"  
+                                       ng-class="{'error': user.dobInvalid}"  ng-model="user.dob"/>
+                                <div class="error-message" ng-show="user.dobInvalid">
+                                    Please enter this informarion
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="label">Email Address*</div>
+                    <div class="label" ng-class="{'error': user.emailInvalid}">Email Address*</div>
                     <div class="input">
-                        <input type="text" class="textbox" placeholder="Email address" />
+                        <input id="email" type="email" class="textbox" placeholder="Email address" ng-model="user.email"
+                               maxlength="100" ng-class="{'error': user.emailInvalid}"/>
+                        <div class="error-message" ng-show="user.emailInvalid">
+                            Please enter this informarion
+                        </div>
                     </div>
-                    <div class="label">Verify Email Address*</div>
+                    <div class="label" ng-class="{'error': user.verifyEmailInvalid}">Verify Email Address*</div>
                     <div class="input">
-                        <input type="text" class="textbox" placeholder="Verify email address" />
+                        <input id="verify-email" type="email" class="textbox" placeholder="Verify email address" ng-model="user.verifyEmail"
+                               maxlength="100" ng-class="{'error': user.verifyEmailInvalid}"/>
+                        <div class="error-message" ng-show="user.verifyEmailInvalid">
+                            Please enter this informarion
+                        </div>
                     </div>
-                    <div class="label">Password*</div>
+                    <div class="label" ng-class="{'error': user.passwordInvalid}">Password*</div>
                     <div class="input">
                         <div class="row">
                             <div class="col-9">
-                                <input type="password" class="textbox" placeholder="password"/>
+                                <input id="password" type="password" class="textbox joint-left" placeholder="password" ng-model="user.password"
+                                       maxlength="25" ng-class="{'error': user.passwordInvalid}"/>
+                                <div class="error-message" ng-show="user.passwordInvalid">
+                                    Please enter this informarion
+                                </div>
                             </div>
                             <div class="col-3">
-                                <input type="checkbox" id="showPassword" />
-                                <label for="showPassword">Show</label>
+                                <div class="joint-right extra">
+                                    <div class="input">
+                                        <input type="checkbox" id="showPassword" />
+                                        <label for="showPassword">Show</label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-12">
-                                <span>Use between 7 - 25 characters. At least one uppercase character. At least one number.</span>
+                                <span class="input-info">Use between 7 - 25 characters. At least one uppercase character. At least one number.</span>
                             </div>
                         </div>
                     </div>
                     <div class="button">
-                        <input type="submit" value="Login" />
+                        <input type="submit" value="Register" class="dark-button right" ng-click="Register()"/>
                     </div>
                 </form>
             </div>

@@ -1,7 +1,7 @@
 ﻿angular.module('mainApp')
     //.factory('UserModel', ['loginResource', function (loginResource) {
     .factory('LoginModel', [function () {
-        
+
         //constructor fot instantiating User
         function User() {
         }

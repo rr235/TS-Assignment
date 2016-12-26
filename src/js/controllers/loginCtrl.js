@@ -50,11 +50,16 @@
                     $scope.userLogin.usernameInvalid = true;
                     isvalid = false;
                     firstError = 'username';
+                } else {
+                    $scope.userLogin.usernameInvalid = false;
                 }
+
                 if (!$scope.userLogin.password) {
                     $scope.userLogin.passwordInvalid = true;
                     isvalid = false;
                     if (!firstError) firstError = 'password';
+                } else {
+                    $scope.userLogin.passwordInvalid = false;
                 }
 
                 if (!isvalid) {

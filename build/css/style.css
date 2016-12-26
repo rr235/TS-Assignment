@@ -16,6 +16,9 @@
   float: left;
   /*padding: 15px;*/ }
 
+[class*="col-"].pad-right {
+  padding-right: 1.5em; }
+
 .col-1 {
   width: 8.33%; }
 
@@ -54,7 +57,10 @@
 
 /*Style for textboxes*/
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="date"],
+input[type="email"],
+select {
   width: 100%;
   padding: 0.5em 0.75em;
   border: 1px solid #BFBDBD;
@@ -79,7 +85,10 @@ input:-ms-input-placeholder {
   font-style: italic; }
 
 input[type="text"].error,
-input[type="password"].error {
+input[type="password"].error,
+input[type="date"].error,
+input[type="email"].error,
+select.error {
   background: #F9E6E6;
   border-color: #D71921; }
 
@@ -215,6 +224,22 @@ body {
         margin-bottom: 1em; }
         .content .section .inner-section .input.last {
           margin-bottom: 0.15em; }
+        .content .section .inner-section .input .input-info {
+          font-size: 0.75em; }
+        .content .section .inner-section .input .joint-left {
+          -moz-border-radius: 4px 0 0 4px;
+          -webkit-border-radius: 4px 0 0 4px;
+          border-radius: 4px 0 0 4px; }
+        .content .section .inner-section .input .joint-right {
+          -moz-border-radius: 0 4px 4px 0;
+          -webkit-border-radius: 0 4px 4px 0;
+          border-radius: 0 4px 4px 0; }
+        .content .section .inner-section .input .extra {
+          border: 1px solid #BFBDBD;
+          background: #fff; }
+          .content .section .inner-section .input .extra .input {
+            margin: 0.325em auto;
+            width: 4em; }
       .content .section .inner-section .popup-link {
         font-size: 0.75em;
         text-decoration: underline;
