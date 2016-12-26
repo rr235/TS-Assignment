@@ -39,9 +39,9 @@
                             <div class="label" ng-class="{'error': user.sexInvalid}">Sex*</div>
                             <div class="input">
                                 <select id="sex" ng-model="user.sex" ng-class="{'error': user.sexInvalid}">
-                                    <option>Please Select</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
+                                    <option value="">Please Select</option>
+                                    <option value="m">Male</option>
+                                    <option value="f">Female</option>
                                 </select>
                                 <div class="error-message" ng-show="user.sexInvalid">
                                     Please select valid option
@@ -104,13 +104,12 @@
                 </form>
             </div>
         </div>
-        <div class="col-4">
-            <div class="alt-section">
+        <div class="col-4 register center-section">
+            <div class="center">
                 <div class="inner-heading">Already a member?</div>
                 <div class="button">
-                    <input type="button" value="Login" />
-                </div>
-            </div>
+                    <input type="button" value="Login" ng-click="GotoLogin()"/>
+                </div></div>
         </div>
     </div>
 </div>

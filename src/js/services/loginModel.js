@@ -1,6 +1,5 @@
 ﻿angular.module('mainApp')
-    //.factory('UserModel', ['loginResource', function (loginResource) {
-    .factory('LoginModel', [function () {
+    .factory('LoginModel', ['AuthenticateUser', function (AuthenticateUser) {
 
         //constructor fot instantiating User
         function User() {
@@ -16,7 +15,14 @@
             checkValidity: function (username, password) {
                 var that = this;
                 that.username = username;
-                that.isValid = username === 'foo' && password === 'something';
+                //that.isValid = username === 'foo' && password === 'something';
+                AuthenticateUser(username, password).then(function(data) {
+                    console.log(data);
+                }, function (data) {
+                    console.log(data);
+
+                });
+
                 return that.isValid;
             }
         };

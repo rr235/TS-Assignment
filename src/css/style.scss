@@ -173,6 +173,7 @@ body {
                 .extra {
                     border: 1px solid $button-color;
                     background: #fff;
+
                     .input {
                         margin: 0.325em auto;
                         width: 4em;
@@ -186,6 +187,36 @@ body {
                 cursor: pointer;
                 margin-top: 0.15em;
             }
+        }
+
+        .center-section {
+            position: relative;
+
+            .center {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                width: 9.5em;
+                height: 5em;
+            }
+        }
+
+        .login.center-section{
+            height: 17.25em;
+        }
+
+        .register.center-section{
+            height: 37.5em;
+        }
+
+        .inner-heading {
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-bottom: 0.75em;
+            text-align: center;
         }
     }
 }

@@ -245,6 +245,26 @@ body {
         text-decoration: underline;
         cursor: pointer;
         margin-top: 0.15em; }
+    .content .section .center-section {
+      position: relative; }
+      .content .section .center-section .center {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 9.5em;
+        height: 5em; }
+    .content .section .login.center-section {
+      height: 17.25em; }
+    .content .section .register.center-section {
+      height: 37.5em; }
+    .content .section .inner-heading {
+      font-weight: 600;
+      font-size: 0.9em;
+      margin-bottom: 0.75em;
+      text-align: center; }
 
 .error-message {
   color: #D71921;

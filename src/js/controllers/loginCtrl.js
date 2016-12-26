@@ -1,6 +1,7 @@
 ﻿angular.module('mainApp')
     .controller('loginCtrl', ['$scope', '$location', '$anchorScroll', '$window', 'LoginModel',
         function ($scope, $location, $anchorScroll, $window, LoginModel) {
+            //intialize user with empty object
             var user = new LoginModel();
             $scope.userLogin = user;
 
@@ -13,6 +14,7 @@
 
                 //check password has required number of charaters
                 if (user.isValidPassword(password)) {
+                    //check username and password are correct
                     if (!user.checkValidity(username, password))
                         $scope.loginMessage = "Invalid username or password.";
                     else {
@@ -20,6 +22,7 @@
                         $location.path('/home');
                     }
                 } else {
+                    //show message if validation fails
                     $scope.message = {
                         success: false,
                         info: 'Password should be minimum 7 characters.',
@@ -30,18 +33,27 @@
                 }
             }
 
+            //close Message Box
             $scope.CloseMessage = function () {
                 $scope.message = null;
             }
 
+            //scroll to id and set focus on element with id
             $scope.GoTo = function (id) {
                 $location.hash(id);
                 $anchorScroll();
                 var element = $window.document.getElementById(id);
                 if (element)
                     element.focus();
+                $location.hash(null);
             }
 
+            //redirect to registration page
+            $scope.GotoRegister = function () {
+                $location.path('/register');
+            }
+
+            //validate input for invalid or empty entry
             function validate() {
                 var firstError = null;
                 var isvalid = true;

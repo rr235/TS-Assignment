@@ -30,8 +30,7 @@ mainapp.config(['$routeProvider', '$locationProvider', function ($routeProvider,
 
 
 angular.module('mainApp')
-    //.factory('UserModel', ['loginResource', function (loginResource) {
-    .factory('LoginModel', [function () {
+    .factory('LoginModel', ['AuthenticateUser', function (AuthenticateUser) {
 
         //constructor fot instantiating User
         function User() {
@@ -47,7 +46,14 @@ angular.module('mainApp')
             checkValidity: function (username, password) {
                 var that = this;
                 that.username = username;
-                that.isValid = username === 'foo' && password === 'something';
+                //that.isValid = username === 'foo' && password === 'something';
+                AuthenticateUser(username, password).then(function(data) {
+                    console.log(data);
+                }, function (data) {
+                    console.log(data);
+
+                });
+
                 return that.isValid;
             }
         };
@@ -55,8 +61,24 @@ angular.module('mainApp')
         return User;
     }]);
 angular.module('mainApp')
-    .factory('loginResource', [function() {
-        
+    .factory('AuthenticateUser', ['$http', function ($http) {
+        var loginurl = 'http://localhost:3000/login';
+
+        return function (username, password) {
+            var req = {
+                method: 'POST',
+                url: loginurl,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: { username: username, password: password }
+            }
+
+            return $http(req)
+                .then(function(response) {
+                    return response.data;
+                });
+        };
     }]);
 angular.module('mainApp')
     .factory('RegisterModel', [function () {
@@ -110,6 +132,7 @@ angular.module('mainApp')
 angular.module('mainApp')
     .controller('loginCtrl', ['$scope', '$location', '$anchorScroll', '$window', 'LoginModel',
         function ($scope, $location, $anchorScroll, $window, LoginModel) {
+            //intialize user with empty object
             var user = new LoginModel();
             $scope.userLogin = user;
 
@@ -122,6 +145,7 @@ angular.module('mainApp')
 
                 //check password has required number of charaters
                 if (user.isValidPassword(password)) {
+                    //check username and password are correct
                     if (!user.checkValidity(username, password))
                         $scope.loginMessage = "Invalid username or password.";
                     else {
@@ -129,6 +153,7 @@ angular.module('mainApp')
                         $location.path('/home');
                     }
                 } else {
+                    //show message if validation fails
                     $scope.message = {
                         success: false,
                         info: 'Password should be minimum 7 characters.',
@@ -139,18 +164,27 @@ angular.module('mainApp')
                 }
             }
 
+            //close Message Box
             $scope.CloseMessage = function () {
                 $scope.message = null;
             }
 
+            //scroll to id and set focus on element with id
             $scope.GoTo = function (id) {
                 $location.hash(id);
                 $anchorScroll();
                 var element = $window.document.getElementById(id);
                 if (element)
                     element.focus();
+                $location.hash(null);
             }
 
+            //redirect to registration page
+            $scope.GotoRegister = function () {
+                $location.path('/register');
+            }
+
+            //validate input for invalid or empty entry
             function validate() {
                 var firstError = null;
                 var isvalid = true;
@@ -195,6 +229,7 @@ angular.module('mainApp')
         function ($scope, $location, $anchorScroll, $window, RegisterModel) {
             //intialize user with empty object
             $scope.user = {};
+            $scope.user.sex = "";
 
             $scope.Register = function () {
                 //check inputs are valid
@@ -204,7 +239,7 @@ angular.module('mainApp')
                 var reg = new RegisterModel($scope.user);
                 var valid = true;//flag for validating user with reg prototype
 
-                //check email and verifyEmsil are same
+                //check email and verifyEmail are same
                 if (!reg.compareEmail()) {
                     $scope.user.emailInvalid = true;
                     $scope.user.verifyEmailInvalid = true;
@@ -258,6 +293,11 @@ angular.module('mainApp')
                 if (element)
                     element.focus();
                 $location.hash(null);
+            }
+
+            //redirect to login page
+            $scope.GotoLogin = function () {
+                $location.path('/login');
             }
 
             //validate input for invalid or empty entry
@@ -320,8 +360,7 @@ angular.module('mainApp')
                 } else {
                     $scope.user.passwordInvalid = false;
                 }
-
-
+                
                 if (!isvalid) {
                     setMessageBox(
                         false,

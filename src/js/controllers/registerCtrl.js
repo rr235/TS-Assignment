@@ -3,6 +3,7 @@
         function ($scope, $location, $anchorScroll, $window, RegisterModel) {
             //intialize user with empty object
             $scope.user = {};
+            $scope.user.sex = "";
 
             $scope.Register = function () {
                 //check inputs are valid
@@ -12,7 +13,7 @@
                 var reg = new RegisterModel($scope.user);
                 var valid = true;//flag for validating user with reg prototype
 
-                //check email and verifyEmsil are same
+                //check email and verifyEmail are same
                 if (!reg.compareEmail()) {
                     $scope.user.emailInvalid = true;
                     $scope.user.verifyEmailInvalid = true;
@@ -66,6 +67,11 @@
                 if (element)
                     element.focus();
                 $location.hash(null);
+            }
+
+            //redirect to login page
+            $scope.GotoLogin = function () {
+                $location.path('/login');
             }
 
             //validate input for invalid or empty entry
@@ -128,8 +134,7 @@
                 } else {
                     $scope.user.passwordInvalid = false;
                 }
-
-
+                
                 if (!isvalid) {
                     setMessageBox(
                         false,
