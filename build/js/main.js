@@ -169,6 +169,8 @@ angular.module('mainApp')
                     user.checkValidity(username, password)
                         .then(function (message) {
                             $scope.loginMessage = message;
+                            if (user.isValid)
+                                $location.path('/home');
                         });
                 } else {
                     //show message if validation fails
