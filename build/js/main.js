@@ -46,15 +46,14 @@ angular.module('mainApp')
             checkValidity: function (username, password) {
                 var that = this;
                 that.username = username;
-                //that.isValid = username === 'foo' && password === 'something';
-                AuthenticateUser(username, password).then(function(data) {
-                    console.log(data);
-                }, function (data) {
-                    console.log(data);
-
-                });
-
-                return that.isValid;
+                return AuthenticateUser(username, password)
+                    .then(function (response) {
+                        that.isValid = true;
+                        return response.data.message;
+                    }, function (error) {
+                        that.isValid = false;
+                        return error.data.message;
+                    });
             }
         };
 
@@ -62,7 +61,7 @@ angular.module('mainApp')
     }]);
 angular.module('mainApp')
     .factory('AuthenticateUser', ['$http', function ($http) {
-        var loginurl = 'http://localhost:3000/login';
+        var loginurl = 'http://localhost:3000/api/login';
 
         return function (username, password) {
             var req = {
@@ -74,14 +73,11 @@ angular.module('mainApp')
                 data: { username: username, password: password }
             }
 
-            return $http(req)
-                .then(function(response) {
-                    return response.data;
-                });
+            return $http(req);
         };
     }]);
 angular.module('mainApp')
-    .factory('RegisterModel', [function () {
+    .factory('RegisterModel', ['RegisterUser', function (RegisterUser) {
         function User(obj) {
             this.forename = obj.forename || '';
             this.surname = obj.surname || '';
@@ -103,7 +99,7 @@ angular.module('mainApp')
                     return false;
             },
             register: function (password) {
-                return this;
+                return RegisterUser(this, password);
             }
         }
 
@@ -130,6 +126,30 @@ angular.module('mainApp')
     }]);
 
 angular.module('mainApp')
+    .factory('RegisterUser', ['$http', function ($http) {
+        var loginurl = 'http://localhost:3000/api/register';
+
+        return function (userData, password) {
+            userData.password = password;
+
+            var req = {
+                method: 'POST',
+                url: loginurl,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: userData
+            }
+
+            return $http(req)
+                .then(function(response) {
+                    return response.data;
+                }, function (error) {
+                    return error.data;
+                });
+        };
+    }]);
+angular.module('mainApp')
     .controller('loginCtrl', ['$scope', '$location', '$anchorScroll', '$window', 'LoginModel',
         function ($scope, $location, $anchorScroll, $window, LoginModel) {
             //intialize user with empty object
@@ -146,12 +166,10 @@ angular.module('mainApp')
                 //check password has required number of charaters
                 if (user.isValidPassword(password)) {
                     //check username and password are correct
-                    if (!user.checkValidity(username, password))
-                        $scope.loginMessage = "Invalid username or password.";
-                    else {
-                        $scope.loginMessage = "";
-                        $location.path('/home');
-                    }
+                    user.checkValidity(username, password)
+                        .then(function (message) {
+                            $scope.loginMessage = message;
+                        });
                 } else {
                     //show message if validation fails
                     $scope.message = {
@@ -277,7 +295,11 @@ angular.module('mainApp')
                 if (!valid) return;
 
                 //register user data
-                reg.register($scope.user.password);
+                reg.register($scope.user.password).then(function(success) {
+                    $location.path('/home');
+                }, function(error) {
+                    
+                });
             }
 
             //close Message Box

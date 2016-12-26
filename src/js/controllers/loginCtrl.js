@@ -15,12 +15,10 @@
                 //check password has required number of charaters
                 if (user.isValidPassword(password)) {
                     //check username and password are correct
-                    if (!user.checkValidity(username, password))
-                        $scope.loginMessage = "Invalid username or password.";
-                    else {
-                        $scope.loginMessage = "";
-                        $location.path('/home');
-                    }
+                    user.checkValidity(username, password)
+                        .then(function (message) {
+                            $scope.loginMessage = message;
+                        });
                 } else {
                     //show message if validation fails
                     $scope.message = {

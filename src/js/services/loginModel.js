@@ -15,15 +15,14 @@
             checkValidity: function (username, password) {
                 var that = this;
                 that.username = username;
-                //that.isValid = username === 'foo' && password === 'something';
-                AuthenticateUser(username, password).then(function(data) {
-                    console.log(data);
-                }, function (data) {
-                    console.log(data);
-
-                });
-
-                return that.isValid;
+                return AuthenticateUser(username, password)
+                    .then(function (response) {
+                        that.isValid = true;
+                        return response.data.message;
+                    }, function (error) {
+                        that.isValid = false;
+                        return error.data.message;
+                    });
             }
         };
 

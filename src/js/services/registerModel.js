@@ -1,5 +1,5 @@
 ﻿angular.module('mainApp')
-    .factory('RegisterModel', [function () {
+    .factory('RegisterModel', ['RegisterUser', function (RegisterUser) {
         function User(obj) {
             this.forename = obj.forename || '';
             this.surname = obj.surname || '';
@@ -21,7 +21,7 @@
                     return false;
             },
             register: function (password) {
-                return this;
+                return RegisterUser(this, password);
             }
         }
 

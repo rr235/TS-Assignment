@@ -1,6 +1,6 @@
 ﻿angular.module('mainApp')
     .factory('AuthenticateUser', ['$http', function ($http) {
-        var loginurl = 'http://localhost:3000/login';
+        var loginurl = 'http://localhost:3000/api/login';
 
         return function (username, password) {
             var req = {
@@ -12,9 +12,6 @@
                 data: { username: username, password: password }
             }
 
-            return $http(req)
-                .then(function(response) {
-                    return response.data;
-                });
+            return $http(req);
         };
     }]);

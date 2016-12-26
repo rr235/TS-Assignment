@@ -51,7 +51,11 @@
                 if (!valid) return;
 
                 //register user data
-                reg.register($scope.user.password);
+                reg.register($scope.user.password).then(function(success) {
+                    $location.path('/home');
+                }, function(error) {
+                    
+                });
             }
 
             //close Message Box
