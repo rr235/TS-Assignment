@@ -115,13 +115,14 @@ input.error:-ms-input-placeholder {
 input[type="button"],
 input[type="submit"] {
   min-width: 150px;
-  padding: 0.75em;
+  padding: 0.5em;
   background: 1px solid #E6E6E6;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
   border: none;
-  text-align: center; }
+  text-align: center;
+  cursor: pointer; }
 
 .dark-button {
   background: #474747;
@@ -236,7 +237,11 @@ body {
           border-radius: 0 4px 4px 0; }
         .content .section .inner-section .input .extra {
           border: 1px solid #BFBDBD;
+          border-left: 0;
           background: #fff; }
+          .content .section .inner-section .input .extra.error {
+            border-color: #D71921;
+            background-color: #F9E6E6; }
           .content .section .inner-section .input .extra .input {
             margin: 0.325em auto;
             width: 4em; }
@@ -293,5 +298,68 @@ body {
     cursor: pointer;
     color: #474747;
     font-weight: 600; }
+
+.calender-box::after {
+  content: '';
+  clear: both;
+  display: table; }
+
+.calender-box .icon-container {
+  float: left;
+  width: 32px; }
+  .calender-box .icon-container .icon-box {
+    border-left: 1px solid #BFBDBD;
+    border-top: 1px solid #BFBDBD;
+    border-bottom: 1px solid #BFBDBD;
+    background: #fff;
+    border-radius: 4px 0 0 4px; }
+    .calender-box .icon-container .icon-box.error {
+      border-color: #D71921;
+      background-color: #F9E6E6; }
+    .calender-box .icon-container .icon-box .icon {
+      background: url("../../images/date.svg");
+      -ms-background-size: contain;
+      background-size: contain;
+      height: 1em;
+      margin: 0.57em;
+      width: 1em;
+      background-repeat: no-repeat; }
+
+.calender-box .textbox-container {
+  float: left;
+  width: calc(100% - 32px); }
+  .calender-box .textbox-container .textbox {
+    border-left: 0 none;
+    border-radius: 0 4px 4px 0;
+    padding-left: 0; }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%; }
+  .dropdown .dropbtn {
+    background-color: #fff;
+    padding: 0.5em 0.75em;
+    border: 1px solid #BFBDBD;
+    cursor: pointer;
+    width: 100%; }
+  .dropdown.error .dropbtn {
+    border-color: #D71921;
+    background-color: #F9E6E6; }
+  .dropdown .dropdown-content {
+    margin-top: 0.75em;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    border: 1px solid #BFBDBD;
+    border-radius: 4px; }
+    .dropdown .dropdown-content .option {
+      padding: 0.5em;
+      text-decoration: none;
+      display: block;
+      cursor: pointer; }
+      .dropdown .dropdown-content .option:hover {
+        background-color: #f1f1f1; }
 
 /*# sourceMappingURL=style.css.map */

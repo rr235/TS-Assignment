@@ -172,7 +172,13 @@ body {
 
                 .extra {
                     border: 1px solid $button-color;
+                    border-left: 0;
                     background: #fff;
+
+                    &.error {
+                        border-color: $error-color;
+                        background-color: $error-background;
+                    }
 
                     .input {
                         margin: 0.325em auto;
@@ -204,11 +210,11 @@ body {
             }
         }
 
-        .login.center-section{
+        .login.center-section {
             height: 17.25em;
         }
 
-        .register.center-section{
+        .register.center-section {
             height: 37.5em;
         }
 
@@ -254,5 +260,92 @@ body {
         cursor: pointer;
         color: $dark-button-color;
         font-weight: 600;
+    }
+}
+
+.calender-box {
+    &::after {
+        content: '';
+        clear: both;
+        display: table;
+    }
+
+    .icon-container {
+        float: left;
+        width: 32px;
+
+        .icon-box {
+            border-left: 1px solid $button-color;
+            border-top: 1px solid $button-color;
+            border-bottom: 1px solid $button-color;
+            background: #fff;
+            border-radius: 4px 0 0 4px;
+
+            &.error {
+                border-color: $error-color;
+                background-color: $error-background;
+            }
+
+            .icon {
+                background: url('../../images/date.svg');
+                -ms-background-size: contain;
+                background-size: contain;
+                height: 1em;
+                margin: 0.57em;
+                width: 1em;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+
+    .textbox-container {
+        float: left;
+        width: calc(100% - 32px);
+
+        .textbox {
+            border-left: 0 none;
+            border-radius: 0 4px 4px 0;
+            padding-left: 0;
+        }
+    }
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+
+    .dropbtn {
+        background-color: #fff;
+        padding: 0.5em 0.75em;
+        border: 1px solid $button-color;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    &.error .dropbtn {
+        border-color: $error-color;
+        background-color: $error-background;
+    }
+
+    .dropdown-content {
+        margin-top: 0.75em;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        overflow: auto;
+        border: 1px solid $button-color;
+        border-radius: 4px;
+
+        .option {
+            padding: 0.5em;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #f1f1f1;
+            }
+        }
     }
 }

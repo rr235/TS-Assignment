@@ -1,0 +1,6 @@
+﻿<div class="dropdown">
+    <input type="button" class="dropbtn" ng-click="Toggle()" value="{{selectedOption.name}}"/>
+    <div class="dropdown-content" ng-show="showOptions">
+        <div class="option" ng-click="select(option)" ng-repeat="option in options">{{option.name}}</div>
+    </div>
+</div>

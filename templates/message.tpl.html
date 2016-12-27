@@ -1,0 +1,9 @@
+﻿<div class="messagebox" ng-show="message.info"
+     ng-class="{true: 'success',false: 'error'}[message.success]">
+    <div class="message-content">
+        <span class="notification">{{message.notification}}</span>
+        <span>{{message.info}}</span>
+        <span class="errorinfo" ng-click="GoTo(message.errorElement)">{{message.errorInfo}}</span>
+        <span class="close-button" ng-click="CloseMessage()">close</span>
+    </div>
+</div>

@@ -2,40 +2,36 @@
     <h1>Login</h1>
     <h2>Access your account</h2>
 </div>
-<div class="messagebox" ng-show="message.info"
-     ng-class="{true: 'success',false: 'error'}[message.success]">
-    <div class="message-content">
-        <span class="notification">{{message.notification}}</span>
-        <span>{{message.info}}</span>
-        <span class="errorinfo" ng-click="GoTo(message.errorElement)">{{message.errorInfo}}</span>
-        <span class="close-button" ng-click="CloseMessage()">close</span>
-    </div>
-</div>
+<info-message message="message"></info-message>
 <div class="section">
     <div class="row">
         <div class="col-8">
             <div class="inner-section">
-                <form>
-                    <div class="label" ng-class="{'error': userLogin.usernameInvalid}">Username</div>
+                <form name="form" novalidate>
+                    <div class="label" ng-class="{'error': (form.$submitted || form.username.$touched) && form.username.$invalid}">Username</div>
                     <div class="input">
-                        <input type="text" id="username" class="textbox" placeholder="Username" ng-model="userLogin.username" 
-                               maxlength="100" ng-class="{'error': userLogin.usernameInvalid}"/>
-                        <div class="error-message" ng-show="userLogin.usernameInvalid">
+                        <input type="text" id="username" name="username" class="textbox" placeholder="Username" 
+                               ng-model="userLogin.username" required maxlength="100" 
+                               ng-class="{'error': (form.$submitted || form.username.$touched) && form.username.$invalid}"/>
+                        <div class="error-message" ng-show="(form.$submitted || form.username.$touched) && form.username.$error.required">
                             Please enter this informarion
                         </div>
                     </div>
 
-                    <div class="label" ng-class="{'error': userLogin.passwordInvalid}">Password</div>
+                    <div class="label" ng-class="{'error': (form.$submitted || form.password.$touched) && form.password.$invalid}">Password</div>
                     <div class="input last">
-                        <input type="password" id="password" class="textbox" placeholder="Password" ng-model="userLogin.password" 
-                               maxlength="25" ng-class="{'error': userLogin.usernameInvalid}"/>
-                        <div class="error-message" ng-show="userLogin.passwordInvalid">
+                        <input type="text" id="password" name="password" class="textbox" placeholder="Password" 
+                               ng-model="userLogin.password" required maxlength="25" minlength="7" 
+                               ng-class="{'error': (form.$submitted || form.password.$touched) && form.password.$invalid}"/>
+                        <div class="error-message" ng-show="(form.$submitted || form.password.$touched) && form.password.$error.required">
                             Please enter this informarion
                         </div>
+                        <div class="error-message" ng-show="(form.$submitted || form.password.$touched) && form.password.$error.minlength">
+                            Password should be minimum 7 characters.
+                        </div>
                     </div>
-                    <div class="popup-link">Forgot password?</div>
 
-                    <div class="info-message">{{loginMessage}}</div>
+                    <div class="popup-link">Forgot password?</div>
 
                     <div class="button">
                         <input type="submit" value="Login" class="dark-button right" ng-click="Login()" />

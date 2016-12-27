@@ -10,10 +10,6 @@
         }
 
         User.prototype = {
-            //to check if password has minimum length
-            isValidPassword: function (password) {
-                return checkMinimumPassword(password);
-            },
             compareEmail: function () {
                 if (this.email && this.verifyEmail)
                     return this.email === this.verifyEmail;
@@ -25,23 +21,23 @@
             }
         }
 
-        function checkMinimumPassword(password) {
-            var hasUpperCase = false, hasNumber = false;
-            if (password.length >= 7 && password.length <= 25) {
-                var i = 0, char;
-                while (i < password.length) {
-                    char = password.charAt(i);
-                    if (/[A-Z]/.test(char)) hasUpperCase = true;
-                    if (/[0-9]/.test(char)) hasNumber = true;
+        //function checkMinimumPassword(password) {
+        //    var hasUpperCase = false, hasNumber = false;
+        //    if (password.length >= 7 && password.length <= 25) {
+        //        var i = 0, char;
+        //        while (i < password.length) {
+        //            char = password.charAt(i);
+        //            if (/[A-Z]/.test(char)) hasUpperCase = true;
+        //            if (/[0-9]/.test(char)) hasNumber = true;
 
-                    if (hasUpperCase && hasNumber) return true;
+        //            if (hasUpperCase && hasNumber) return true;
 
-                    i++;
-                }
-                return false;
-            } else
-                return false;
-        }
+        //            i++;
+        //        }
+        //        return false;
+        //    } else
+        //        return false;
+        //}
 
         return User;
 

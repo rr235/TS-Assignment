@@ -1,51 +1,35 @@
 ﻿angular.module('mainApp')
-    .controller('loginCtrl', ['$scope', '$location', '$anchorScroll', '$window', 'LoginModel',
-        function ($scope, $location, $anchorScroll, $window, LoginModel) {
+    .controller('loginCtrl', ['$scope', '$location', 'LoginModel',
+        function ($scope, $location, LoginModel) {
             //intialize user with empty object
             var user = new LoginModel();
             $scope.userLogin = user;
 
+            //login
             $scope.Login = function () {
+                //check if input is valid
+                if (!isValid()) return;
+
                 var username = $scope.userLogin.username;
                 var password = $scope.userLogin.password;
 
-                //check if input is valid
-                if (!validate()) return;
+                //check username and password are correct
+                user.checkValidity(username, password)
+                    .then(function (message) {
+                        if (user.isValid)
+                            $location.path('/home');
+                        else {
+                            $scope.message = {
+                                success: false,
+                                info: message + '!',
+                                notification: 'Oops!',
+                                errorInfo: 'Go to error.',
+                                errorElement: 'password'
+                            }
+                            $scope.userLogin.password = "";
+                        }
+                    });
 
-                //check password has required number of charaters
-                if (user.isValidPassword(password)) {
-                    //check username and password are correct
-                    user.checkValidity(username, password)
-                        .then(function (message) {
-                            $scope.loginMessage = message;
-                            if (user.isValid)
-                                $location.path('/home');
-                        });
-                } else {
-                    //show message if validation fails
-                    $scope.message = {
-                        success: false,
-                        info: 'Password should be minimum 7 characters.',
-                        notification: 'Oops!',
-                        errorInfo: 'Go to error.',
-                        errorElement: 'password'
-                    }
-                }
-            }
-
-            //close Message Box
-            $scope.CloseMessage = function () {
-                $scope.message = null;
-            }
-
-            //scroll to id and set focus on element with id
-            $scope.GoTo = function (id) {
-                $location.hash(id);
-                $anchorScroll();
-                var element = $window.document.getElementById(id);
-                if (element)
-                    element.focus();
-                $location.hash(null);
             }
 
             //redirect to registration page
@@ -54,27 +38,15 @@
             }
 
             //validate input for invalid or empty entry
-            function validate() {
-                var firstError = null;
-                var isvalid = true;
+            function isValid() {
+                if ($scope.form.$invalid) {
+                    var firstError = null;
 
-                if (!$scope.userLogin.username) {
-                    $scope.userLogin.usernameInvalid = true;
-                    isvalid = false;
-                    firstError = 'username';
-                } else {
-                    $scope.userLogin.usernameInvalid = false;
-                }
+                    if ($scope.form.username.$invalid) firstError = 'username';
 
-                if (!$scope.userLogin.password) {
-                    $scope.userLogin.passwordInvalid = true;
-                    isvalid = false;
-                    if (!firstError) firstError = 'password';
-                } else {
-                    $scope.userLogin.passwordInvalid = false;
-                }
+                    if ($scope.form.password.$invalid)
+                        if (!firstError) firstError = 'password';
 
-                if (!isvalid) {
                     $scope.message = {
                         success: false,
                         info: 'Looks like you need to adjust few things.',
@@ -82,8 +54,8 @@
                         errorInfo: 'Go to first error.',
                         errorElement: firstError
                     }
-                }
-
-                return isvalid;
+                    return false;
+                } else
+                    return true;
             }
         }]);
