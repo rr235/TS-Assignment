@@ -11,16 +11,26 @@
 </head>
 <body>
 <div class="main" ng-app="mainApp">
-    <div class="nav">
+    <div class="nav" ng-controller="menuCtrl">
         <div class="logo"></div>
+        <div class="menu-button" ng-click="toggleMobileMenu()">Menu</div>
         <nav>
-            <ul class="menu" ng-controller="menuCtrl">
+            <ul class="menu">
                 <li><a href="#">Buy</a></li>
                 <li><a href="#">Sell</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Blog</a></li>
                 <li class="right"><a ng-href="#/register" ng-class="{active: isActive('/register')}">Sign-up</a></li>
                 <li class="right"><a ng-href="#/login" ng-class="{active: isActive('/login')}">Login</a></li>
+            </ul>
+
+            <ul class="mob-menu" ng-show="showMobileMenu">
+                <li><span ng-click="goTo()">Buy</span></li>
+                <li><span ng-click="goTo()">Sell</span></li>
+                <li><span ng-click="goTo()">About</span></li>
+                <li><span ng-click="goTo()">Blog</span></li>
+                <li class="right"><span ng-class="{active: isActive('/register')}" ng-click="goTo('/register')">Sign-up</span></li>
+                <li class="right"><span ng-class="{active: isActive('/login')}" ng-click="goTo('/login')">Login</span></li>
             </ul>
         </nav>
     </div>

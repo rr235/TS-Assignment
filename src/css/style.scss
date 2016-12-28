@@ -59,20 +59,24 @@ body {
 }
 
 .nav {
-    height: 3.25em;
-    overflow: hidden;
-
+    background: $menu-color;
+    /*overflow: hidden;*/
     .logo {
         width: 4.25em;
-        height: 100%;
+        height: 3.25em;
         float: left;
         background: $logo-box-color;
+    }
+
+    .menu-button {
+        display: none;
     }
 
     .menu {
         margin: 0;
         padding: 0;
         list-style-type: none;
+        height: 3.25em;
         overflow: hidden;
         background: $menu-color;
 
@@ -102,6 +106,11 @@ body {
                 }
             }
         }
+    }
+
+
+    .mob-menu {
+        display: none;
     }
 }
 
@@ -192,6 +201,7 @@ body {
                 text-decoration: underline;
                 cursor: pointer;
                 margin-top: 0.15em;
+                margin-bottom: 0.75em;
             }
         }
 
@@ -291,9 +301,11 @@ body {
                 -ms-background-size: contain;
                 background-size: contain;
                 height: 1em;
-                margin: 0.57em;
+                margin: 0.58em;
                 width: 1em;
                 background-repeat: no-repeat;
+                /*line-height: 1em;
+                padding: 0.67em;*/
             }
         }
     }
@@ -321,6 +333,7 @@ body {
         border: 1px solid $button-color;
         cursor: pointer;
         width: 100%;
+        min-width: 0;
     }
 
     &.error .dropbtn {
@@ -346,6 +359,113 @@ body {
             &:hover {
                 background-color: #f1f1f1;
             }
+        }
+    }
+}
+
+@media only screen and (max-width: 900px) {
+
+
+    .nav {
+        .menu-button {
+            width: 4.25em;
+            height: 3.25em;
+            float: right;
+            background: $menu-focus-color;
+            display: block;
+            font-size: 0.95em;
+            font-weight: 600;
+            min-width: 7em;
+            padding: 1em;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer
+        }
+
+        .menu {
+            visibility: hidden;
+        }
+
+        .mob-menu {
+            display: block;
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            overflow: hidden;
+            background: $menu-color;
+
+            li {
+
+                &.right {
+                    float: none;
+                }
+
+                span {
+                    display: block;
+                    min-width: 7em;
+                    font-size: 0.95em;
+                    padding: 1em;
+                    font-weight: 600;
+                    text-align: center;
+                    text-decoration: none;
+                    color: $font-color;
+                    cursor: pointer;
+
+                    &.active {
+                        background: $menu-active-color;
+                    }
+                }
+
+                &:hover {
+                    background: $menu-focus-color;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .menu {
+        visibility: hidden;
+    }
+
+    .content {
+        padding: 0;
+        font-size: 0.9em;
+
+        .section .inner-section {
+            margin: 0.25em;
+            padding: 0.25em;
+        }
+    }
+
+    .calender-box .icon-container .icon-box .icon {
+        margin: 0.57em;
+    }
+
+    .content .section .inner-section .input .extra {
+        border: 1px solid $button-color;
+        border-radius: 4px;
+    }
+
+    .input [class*="col-"] {
+        padding: 5px 0;
+    }
+
+    .right,
+    .left {
+        float: none;
+    }
+
+    .button input[type="button"],
+    .button input[type="submit"] {
+        width: 100%;
+    }
+
+    .content .section {
+        .register.center-section,
+        .login.center-section {
+            height: 10em;
         }
     }
 }
